@@ -1,8 +1,8 @@
 import {
-  AnyWASocket,
+  WASocket,
   BinaryNode,
   Contact as BContact,
-} from "@adiwajshing/baileys";
+} from "@whiskeysockets/baileys";
 import * as Sentry from "@sentry/node";
 
 import { Op } from "sequelize";
@@ -16,7 +16,7 @@ import { logger } from "../../utils/logger";
 import createOrUpdateBaileysService from "../BaileysServices/CreateOrUpdateBaileysService";
 import CreateMessageService from "../MessageServices/CreateMessageService";
 
-type Session = AnyWASocket & {
+type Session = WASocket & {
   id?: number;
   store?: Store;
 };
@@ -108,9 +108,9 @@ const wbotMonitor = async (
       });
     });
 
-    wbot.ev.on("contacts.set", async (contacts: IContact) => {
-      console.log("set", contacts);
-    });
+    //wbot.ev.on("contacts.set", async (contacts: IContact) => {
+      //console.log("set", contacts);
+    //});
   } catch (err) {
     Sentry.captureException(err);
     logger.error(err);
